@@ -14,12 +14,9 @@ const fetchOrg = async (org) => {
   const orgCall = await fetch(`https://api.github.com/orgs/${org}/repos?access_token=${token}`);
 
   const orgData = await orgCall.json();
-  // console.log(`org data:, `, orgData)
 
   orgData.forEach(forEachFunc);
 
-
-  console.log((orgData));
   return { orgData };
 };
 
@@ -45,9 +42,6 @@ const displayData = async () => {
       topStars = res.orgData.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 5);
       topForks = res.orgData.sort((a, b) => b.forks - a.forks).slice(0, 5);
       topContribs = res.orgData.sort((a, b) => b.contribNum - a.contribNum).slice(0, 5);
-
-      console.log('topCONTRIBS', topContribs)
-      // console.log(topStars);
 
       topStars.forEach((org, idx) => {
         let topStar = document.createElement("li");
